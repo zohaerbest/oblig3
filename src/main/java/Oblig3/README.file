@@ -1,0 +1,33 @@
+README.md
+
+# Kinobillettbestilling med Databaselagring
+
+Dette prosjektet tar utgangspunkt i koden fra obligatorisk oppgave 2 og erstatter arrayet på tjeneren med en tabell i en relasjonsdatabase. Det benytter en H2-"in-memory"-database for en enkel løsning. Det er også mulig å bruke Heroku Postgres-database, som krever testing på Heroku-plattformen.
+
+## Oppsett
+
+For å kjøre prosjektet lokalt, må du ha følgende konfigurasjon i `src/main/resources/application.properties`:
+
+```properties
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=true
+```
+
+Dette gjør at du kan få tilgang til H2-konsollen på http://localhost:8080/h2-console.
+
+## Kjøring
+
+For å kjøre prosjektet, kan du kjøre `mvn spring-boot:run` fra rotmappen.
+
+## Testing på Heroku
+
+Dersom du ønsker å bruke Heroku Postgres-database, må du teste at løsningen fungerer som den skal på Heroku-plattformen. Se siste del av første time av forelesningen "Relasjonedatabaser 1" for mer informasjon om PostgreSQL-løsning.
+
+## Funksjonalitet
+
+Applikasjonen lar brukere bestille kinobilletter. Når alle bestillinger hentes, blir listen med bestillinger sortert på etternavn. Uten noen form for sortering, ville denne listen være ordnet etter rekkefølgen bestillingene ble lagt inn på. Sorteringen skjer på serveren.
+
+## Merknad
+
+Denne løsningen opprettholder funksjonaliteten fra obligatorisk oppgave 1 og 2, men med databaselagring for bedre skalerbarhet og ytelse.
