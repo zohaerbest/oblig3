@@ -1,28 +1,43 @@
 package Oblig3;
 
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
+import Oblig3.Ticket;
+import Oblig3.TicketRepository;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/tickets")
 public class TicketController {
-    private List<Ticket> tickets = new ArrayList<>();
 
-    @PostMapping("/tickets")
-    public void createTicket(@RequestBody Ticket ticket) {
-        tickets.add(ticket);
+    @Autowired
+    private TicketRepository ticketRepository;
+
+    @GetMapping("/")
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
     }
 
-    @GetMapping("/tickets")
-    public List<Ticket> getTickets() {
-        return tickets;
+    @PostMapping("/")
+    public Ticket addTicket(@RequestBody Ticket ticket) {
+        return ticketRepository.save(ticket);
     }
 
-    @DeleteMapping("/tickets")
-    public void deleteTickets() {
-        tickets.clear();
+    @DeleteMapping("/")
+    public ResponseEntity<Void> deleteAllTickets() {
+        ticketRepository.deleteAll();
+        return ResponseEntity.ok().build();
     }
 }
+
+
+
+
+
+
 
 

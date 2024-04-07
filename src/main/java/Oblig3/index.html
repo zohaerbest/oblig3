@@ -1,105 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinobilletter</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            padding-top: 50px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #007bff;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            font-weight: bold;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .ticket-list {
-            margin-top: 30px;
-        }
-        .ticket {
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestilling av Kinobilletter</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="script.js" defer></script>
 </head>
-<body>
+<body class="p-3 mb-2 bg-light text-dark">
 <div class="container">
-    <h1>Kinobilletter</h1>
-
+  <h1>Bestilling av Kinobilletter</h1>
+  <form id="ticketForm" class="mb-3">
     <div class="form-group">
-        <label for="movie">Velg film:</label>
-        <select id="movie" class="form-control">
-            <option value="film1">Film 1</option>
-            <option value="film2">Film 2</option>
-            <option value="film3">Film 3</option>
-        </select>
+      <label for="movieName">Velg film:</label>
+      <select id="movieName" class="form-control" required>
+        <option value="">--Velg en film--</option>
+        <option value="Inception">Inception</option>
+        <option value="Interstellar">Interstellar</option>
+        <option value="The Matrix">The Matrix</option>
+      </select>
     </div>
-
     <div class="form-group">
-        <label for="quantity">Antall billetter:</label>
-        <input type="number" id="quantity" class="form-control" min="1">
+      <label for="tickets">Antall billetter:</label>
+      <input type="number" id="tickets" class="form-control" min="1" required>
     </div>
-
     <div class="form-group">
-        <label for="firstName">Fornavn:</label>
-        <input type="text" id="firstName" class="form-control">
+      <label for="firstName">Fornavn:</label>
+      <input type="text" id="firstName" class="form-control" required>
     </div>
-
     <div class="form-group">
-        <label for="lastName">Etternavn:</label>
-        <input type="text" id="lastName" class="form-control">
+      <label for="lastName">Etternavn:</label>
+      <input type="text" id="lastName" class="form-control" required>
     </div>
-
     <div class="form-group">
-        <label for="phone">Telefonnummer:</label>
-        <input type="tel" id="phone" class="form-control">
+      <label for="phone">Telefonnr:</label>
+      <input type="tel" id="phone" class="form-control" pattern="[0-9]{8}" title="Enter 8-digit phone number" required>
     </div>
-
     <div class="form-group">
-        <label for="email">E-post:</label>
-        <input type="email" id="email" class="form-control">
+      <label for="post">Post:</label>
+      <input type="text" id="post" class="form-control" required>
     </div>
-
-    <button id="buyTicket" class="btn btn-primary btn-block">Kjøp billett</button>
-
-    <div class="ticket-list">
-        <h2>Alle billetter</h2>
-        <div id="ticketList"></div>
-    </div>
-
-    <button id="deleteTickets" class="btn btn-danger btn-block">Slett alle billetter</button>
+    <button type="submit" class="btn btn-primary">Kjøp billett</button>
+  </form>
+  <h2>Alle billetter:</h2>
+  <div id="ticketsList"></div>
+  <button onclick="deleteAllTickets()" class="btn btn-danger">Slett alle billettene</button>
 </div>
-
-<script src="script.js"></script>
 </body>
 </html>
+
+
